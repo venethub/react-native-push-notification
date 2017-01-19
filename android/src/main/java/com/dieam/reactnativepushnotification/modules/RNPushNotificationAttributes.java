@@ -14,9 +14,9 @@ import static com.dieam.reactnativepushnotification.modules.RNPushNotification.L
 
 public class RNPushNotificationAttributes {
     private static final String ID = "id";
-    private static final String MESSAGE = "message";
+    private static final String MESSAGE = "gcm.notification.body";
     private static final String FIRE_DATE = "fireDate";
-    private static final String TITLE = "title";
+    private static final String TITLE = "gcm.notification.title";
     private static final String TICKER = "ticker";
     private static final String AUTO_CANCEL = "autoCancel";
     private static final String LARGE_ICON = "largeIcon";
@@ -24,7 +24,7 @@ public class RNPushNotificationAttributes {
     private static final String BIG_TEXT = "bigText";
     private static final String SUB_TEXT = "subText";
     private static final String NUMBER = "number";
-    private static final String SOUND = "sound";
+    private static final String SOUND = "gcm.notification.sound";
     private static final String COLOR = "color";
     private static final String GROUP = "group";
     private static final String USER_INTERACTION = "userInteraction";
