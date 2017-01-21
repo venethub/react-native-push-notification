@@ -172,7 +172,7 @@ public class RNPushNotificationHelper {
             String message = bundle.containsKey("message") ? bundle.getString("message") : bundle.getString("gcm.notification.body");
             notification.setContentText(message);
 
-            String largeIcon = bundle.getString("largeIcon");
+            String largeIcon = bundle.containsKey("largeIcon") ? bundle.getString("largeIcon") : bundle.getString("gcm.notification.largeIcon");
 
             String subText = bundle.getString("subText");
 
@@ -188,7 +188,7 @@ public class RNPushNotificationHelper {
             int smallIconResId;
             int largeIconResId;
 
-            String smallIcon = bundle.getString("smallIcon");
+            String smallIcon = bundle.containsKey("smallIcon") ? bundle.getString("smallIcon") : bundle.getString("gcm.notification.smallIcon");
 
             if (smallIcon != null) {
                 smallIconResId = res.getIdentifier(smallIcon, "mipmap", packageName);
