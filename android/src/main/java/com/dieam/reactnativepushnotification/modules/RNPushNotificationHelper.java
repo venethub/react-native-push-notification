@@ -136,7 +136,7 @@ public class RNPushNotificationHelper {
                 return;
             }
 
-            if (bundle.getString("message") == null) {
+            if (bundle.getString("message") == null && bundle.getString("gcm.notification.body") == null) {
                 // this happens when a 'data' notification is received - we do not synthesize a local notification in this case
                 Log.d(LOG_TAG, "Cannot send to notification centre because there is no 'message' field in: " + bundle);
                 return;
@@ -151,7 +151,7 @@ public class RNPushNotificationHelper {
             Resources res = context.getResources();
             String packageName = context.getPackageName();
 
-            String title = bundle.getString("title");
+            String title = bundle.has("title") ? bundle.getString("title") : bundle.getString("gcm.notification.title");
             if (title == null) {
                 ApplicationInfo appInfo = context.getApplicationInfo();
                 title = context.getPackageManager().getApplicationLabel(appInfo).toString();
@@ -169,7 +169,8 @@ public class RNPushNotificationHelper {
                 notification.setGroup(group);
             }
 
-            notification.setContentText(bundle.getString("message"));
+            String message = bundle.has("message") ? bundle.getString("message") : bundle.getString("gcm.notification.body");
+            notification.setContentText(message);
 
             String largeIcon = bundle.getString("largeIcon");
 
@@ -216,10 +217,10 @@ public class RNPushNotificationHelper {
             }
 
             notification.setSmallIcon(smallIconResId);
-            String bigText = bundle.getString("bigText");
+            String bigText = bundle.has("bigText") ? bundle.getString("bigText") : bundle.getString("gcm.notification.bigText");
 
             if (bigText == null) {
-                bigText = bundle.getString("message");
+                bigText = message;
             }
 
             notification.setStyle(new NotificationCompat.BigTextStyle().bigText(bigText));
