@@ -151,7 +151,7 @@ public class RNPushNotificationHelper {
             Resources res = context.getResources();
             String packageName = context.getPackageName();
 
-            String title = bundle.has("title") ? bundle.getString("title") : bundle.getString("gcm.notification.title");
+            String title = bundle.containsKey("title") ? bundle.getString("title") : bundle.getString("gcm.notification.title");
             if (title == null) {
                 ApplicationInfo appInfo = context.getApplicationInfo();
                 title = context.getPackageManager().getApplicationLabel(appInfo).toString();
@@ -169,7 +169,7 @@ public class RNPushNotificationHelper {
                 notification.setGroup(group);
             }
 
-            String message = bundle.has("message") ? bundle.getString("message") : bundle.getString("gcm.notification.body");
+            String message = bundle.containsKey("message") ? bundle.getString("message") : bundle.getString("gcm.notification.body");
             notification.setContentText(message);
 
             String largeIcon = bundle.getString("largeIcon");
@@ -217,7 +217,7 @@ public class RNPushNotificationHelper {
             }
 
             notification.setSmallIcon(smallIconResId);
-            String bigText = bundle.has("bigText") ? bundle.getString("bigText") : bundle.getString("gcm.notification.bigText");
+            String bigText = bundle.containsKey("bigText") ? bundle.getString("bigText") : bundle.getString("gcm.notification.bigText");
 
             if (bigText == null) {
                 bigText = message;
